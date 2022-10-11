@@ -24,6 +24,7 @@ import br.com.paymentservicepb.service.OrderService;
 @RestController
 @RequestMapping("api/v1/order/payment")
 public class OrderController {
+	
 	@Autowired
     private OrderService service;
 

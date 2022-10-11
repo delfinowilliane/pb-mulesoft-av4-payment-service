@@ -6,12 +6,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import br.com.paymentservicepb.dto.OrderRequestDto;
 import br.com.paymentservicepb.model.OrderRequest;
 import br.com.paymentservicepb.repository.OrderRepository;
 import br.com.paymentservicepb.statics.Status;
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
 public class OrderService {
 	
 	@Autowired
@@ -27,17 +31,17 @@ public class OrderService {
     }
 
     public OrderRequestDto obterPorId(Long id) {
-    	OrderRequest order = repository.findById(id)
+    	OrderRequest order_id = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException());
 
-        return modelMapper.map(order, OrderRequestDto.class);
+        return modelMapper.map(order_id, OrderRequestDto.class);
     }
 
     public OrderRequestDto criarPagamento(OrderRequestDto dto) {
-    	OrderRequest order = modelMapper.map(dto, OrderRequest.class);
-        order.setStatus(Status.APPROVED);
-        repository.save(order);
+    	OrderRequest order_id = modelMapper.map(dto, OrderRequest.class);
+    	order_id.setStatus(Status.APPROVED);
+        repository.save(order_id);
 
-        return modelMapper.map(order, OrderRequestDto.class);
+        return modelMapper.map(order_id, OrderRequestDto.class);
     }
 }

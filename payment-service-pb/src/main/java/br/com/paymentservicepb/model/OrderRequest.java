@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -26,7 +25,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "payments")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -39,7 +37,7 @@ public class OrderRequest {
 	@NotNull @Enumerated(EnumType.STRING)
 	private DocumentType document_type;
 		
-    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="items")
+    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="itemsInfo")
     private List<Items> items = new ArrayList<>();
     
 	@NotNull @Positive
@@ -54,7 +52,7 @@ public class OrderRequest {
 	@NotNull @Enumerated(EnumType.STRING)
 	private Currency currency_type;
 			
-//    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="payment")
+    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="payment")
     private List<Card> payment = new ArrayList<>();
     
     private Status status;
