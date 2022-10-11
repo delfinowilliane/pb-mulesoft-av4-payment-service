@@ -1,4 +1,4 @@
-package br.com.paymentservicepb.model;
+package br.com.paymentservicepb.statics;
 
 public enum Brand {
 	MASTERCARD,

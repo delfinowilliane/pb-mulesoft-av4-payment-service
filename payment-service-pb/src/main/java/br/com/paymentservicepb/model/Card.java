@@ -2,10 +2,12 @@ package br.com.paymentservicepb.model;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.paymentservicepb.statics.Brand;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Card {
 	
-	private String number_token; //instanciar método
+	private String card_number;
 	
 	@NotBlank @Size(max=100)
 	private String cardholder_name;
@@ -33,5 +35,8 @@ public class Card {
 	
 	@NotBlank @Size(min=4,max=4)
 	private Integer expiration_year;
+	
+	@ManyToOne(optional=false)
+	private OrderRequest payment;
 
 }
